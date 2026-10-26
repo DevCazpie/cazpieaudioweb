@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CAZPIE AUDIO | Adharsh M. — Game Audio Designer, Music Producer & Game Designer</title>
   <meta name="description" content="Personal portfolio of Adharsh M. (CAZPIE AUDIO) — Game Audio Designer, Music Producer, and Game Designer based in Kerala, India.">
-  <meta name="theme-color" content="#0b1322">
+  <meta name="theme-color" content="#f7f5f1">
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet (Warm Editorial Theme) -->
+  <!-- Main Stylesheet (Japanese print-inspired red and paper theme) -->
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    try { if (localStorage.getItem('cazpie-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}
+  </script>
 </head>
 <body>
 
@@ -53,6 +56,7 @@
           <li class="nav-item"><a href="#music">Music</a></li>
           <li class="nav-item"><a href="#game-audio">Projects</a></li>
           <li class="nav-item"><a href="#socials">Socials</a></li>
+          <li class="nav-item theme-toggle-item"><button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark mode</button></li>
           <li class="nav-item nav-contact"><a href="mailto:djcazpie@gmail.com?subject=Portfolio%20Inquiry">Contact</a></li>
         </ul>
       </nav>
@@ -204,7 +208,7 @@
               OFFICIAL SOUNDCLOUD EMBED:
               - Profile: https://soundcloud.com/cazpie
               - auto_play=false ensures music will not autoplay.
-              - color=#48d1e1 matches the portfolio accent.
+              - color=#b3192d matches the portfolio accent.
             -->
             <iframe
               id="sc-player"
@@ -214,7 +218,7 @@
               scrolling="no"
               frameborder="no"
               allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/cazpie&color=%2348d1e1&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/cazpie&color=%23b3192d&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
             </iframe>
           </div>
 

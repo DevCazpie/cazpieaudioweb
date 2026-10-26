@@ -4,6 +4,26 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Theme toggle, persisted locally between visits.
+  const themeToggle = document.getElementById('themeToggle');
+  const rootElement = document.documentElement;
+  const syncThemeToggle = () => {
+    const isDark = rootElement.dataset.theme === 'dark';
+    if (themeToggle) {
+      themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#111111' : '#f7f5f1');
+  };
+  syncThemeToggle();
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = rootElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    if (nextTheme === 'dark') rootElement.dataset.theme = 'dark';
+    else delete rootElement.dataset.theme;
+    try { localStorage.setItem('cazpie-theme', nextTheme); } catch (_) {}
+    syncThemeToggle();
+  });
+
   // =========================================================================
   // 1. Mobile Navigation Menu Toggle
   // =========================================================================
@@ -413,12 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
     heroWave.appendChild(frag);
   }
 
-  // Subtle warm-toned particles and audio-like waveforms across the full page.
+  // One restrained, slow-moving waveform across the full page.
   const particleCanvas = document.getElementById('particleCanvas');
   const particleContext = particleCanvas && particleCanvas.getContext('2d');
   if (particleCanvas && particleContext) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let particles = [];
     let canvasWidth = 0;
     let canvasHeight = 0;
     let particleFrame = 0;
@@ -434,14 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
       particleCanvas.height = Math.round(canvasHeight * pixelRatio);
       particleContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 
-      const particleCount = Math.max(34, Math.min(88, Math.round(canvasWidth * canvasHeight / 18000)));
-      particles = Array.from({ length: particleCount }, () => ({
-        x: Math.random() * canvasWidth,
-        y: Math.random() * canvasHeight,
-        vx: (Math.random() - 0.5) * 0.32,
-        vy: (Math.random() - 0.5) * 0.32,
-        radius: 0.8 + Math.random() * 1.5
-      }));
       drawParticles();
     }
 
@@ -449,48 +460,17 @@ document.addEventListener('DOMContentLoaded', () => {
       particleContext.clearRect(0, 0, canvasWidth, canvasHeight);
       if (!reducedMotion) wavePhase += 0.008;
 
-      for (let waveIndex = 0; waveIndex < 2; waveIndex++) {
-        const centerY = canvasHeight * (waveIndex === 0 ? 0.34 : 0.69);
-        particleContext.beginPath();
-        for (let x = 0; x <= canvasWidth; x += 8) {
-          const envelope = 7 + Math.sin(x * 0.0024 - wavePhase) * 8;
-          const y = centerY + Math.sin(x * 0.012 + wavePhase + waveIndex) * envelope;
-          if (x === 0) particleContext.moveTo(x, y);
-          else particleContext.lineTo(x, y);
-        }
-        particleContext.strokeStyle = waveIndex === 0 ? 'rgba(72, 209, 225, 0.09)' : 'rgba(166, 237, 242, 0.055)';
-        particleContext.lineWidth = 1;
-        particleContext.stroke();
+      const centerY = canvasHeight * 0.55;
+      particleContext.beginPath();
+      for (let x = 0; x <= canvasWidth; x += 8) {
+        const envelope = 3 + Math.sin(x * 0.0018 - wavePhase) * 3;
+        const y = centerY + Math.sin(x * 0.009 + wavePhase) * envelope;
+        if (x === 0) particleContext.moveTo(x, y);
+        else particleContext.lineTo(x, y);
       }
-
-      particles.forEach((particle, index) => {
-        if (!reducedMotion) {
-          particle.x += particle.vx;
-          particle.y += particle.vy;
-          if (particle.x < 0 || particle.x > canvasWidth) particle.vx *= -1;
-          if (particle.y < 0 || particle.y > canvasHeight) particle.vy *= -1;
-        }
-
-        particleContext.beginPath();
-        particleContext.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        particleContext.fillStyle = index % 31 === 0 ? 'rgba(241, 91, 138, 0.72)' : 'rgba(166, 237, 242, 0.68)';
-        particleContext.fill();
-
-        for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex++) {
-          const other = particles[otherIndex];
-          const dx = particle.x - other.x;
-          const dy = particle.y - other.y;
-          const distance = Math.hypot(dx, dy);
-          if (distance < 118) {
-            particleContext.beginPath();
-            particleContext.moveTo(particle.x, particle.y);
-            particleContext.lineTo(other.x, other.y);
-            particleContext.strokeStyle = `rgba(72, 209, 225, ${(1 - distance / 118) * 0.2})`;
-            particleContext.lineWidth = 0.7;
-            particleContext.stroke();
-          }
-        }
-      });
+      particleContext.strokeStyle = 'rgba(177, 25, 45, 0.075)';
+      particleContext.lineWidth = 1;
+      particleContext.stroke();
 
       if (!reducedMotion && document.visibilityState === 'visible') {
         particleFrame = window.requestAnimationFrame(drawParticles);
