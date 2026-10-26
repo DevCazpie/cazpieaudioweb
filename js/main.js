@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroWave.appendChild(frag);
   }
 
-  // Subtle sky-blue particles and audio-like waveforms across the full page.
+  // Subtle warm-toned particles and audio-like waveforms across the full page.
   const particleCanvas = document.getElementById('particleCanvas');
   const particleContext = particleCanvas && particleCanvas.getContext('2d');
   if (particleCanvas && particleContext) {
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (x === 0) particleContext.moveTo(x, y);
           else particleContext.lineTo(x, y);
         }
-        particleContext.strokeStyle = waveIndex === 0 ? 'rgba(56, 189, 248, 0.075)' : 'rgba(125, 211, 252, 0.045)';
+        particleContext.strokeStyle = waveIndex === 0 ? 'rgba(196, 122, 74, 0.09)' : 'rgba(224, 174, 127, 0.055)';
         particleContext.lineWidth = 1;
         particleContext.stroke();
       }
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         particleContext.beginPath();
         particleContext.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        particleContext.fillStyle = 'rgba(125, 211, 252, 0.72)';
+        particleContext.fillStyle = 'rgba(224, 174, 127, 0.68)';
         particleContext.fill();
 
         for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex++) {
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
             particleContext.beginPath();
             particleContext.moveTo(particle.x, particle.y);
             particleContext.lineTo(other.x, other.y);
-            particleContext.strokeStyle = `rgba(56, 189, 248, ${(1 - distance / 118) * 0.19})`;
+            particleContext.strokeStyle = `rgba(196, 122, 74, ${(1 - distance / 118) * 0.2})`;
             particleContext.lineWidth = 0.7;
             particleContext.stroke();
           }

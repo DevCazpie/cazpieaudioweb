@@ -2,7 +2,7 @@
 
 Personal portfolio website for **Adharsh M.** — Game Audio Designer, Music Producer, and Game Designer based in Kerala, India.
 
-Built with zero-dependency HTML5, CSS3, and vanilla JavaScript. The portfolio uses a dark editorial layout with sky blue accents.
+Built with zero-dependency HTML5, CSS3, and vanilla JavaScript. The portfolio uses a dark editorial layout with warm terracotta and brass accents.
 
 ---
 
@@ -80,11 +80,11 @@ The website embeds your official SoundCloud profile (`https://soundcloud.com/caz
        scrolling="no"
        frameborder="no"
        allow="autoplay"
-       src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/cazpie&color=%2338bdf8&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+       src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/cazpie&color=%23c47a4a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
      </iframe>
    </div>
    ```
-8. Replace the `src` attribute with the one from SoundCloud's embed code (keeping `auto_play=false` and `color=%2338bdf8` for visual consistency).
+8. Replace the `src` attribute with the one from SoundCloud's embed code (keeping `auto_play=false` and `color=%23c47a4a` for visual consistency).
 
 ---
 
