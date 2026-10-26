@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (x === 0) particleContext.moveTo(x, y);
           else particleContext.lineTo(x, y);
         }
-        particleContext.strokeStyle = waveIndex === 0 ? 'rgba(196, 122, 74, 0.09)' : 'rgba(224, 174, 127, 0.055)';
+        particleContext.strokeStyle = waveIndex === 0 ? 'rgba(72, 209, 225, 0.09)' : 'rgba(166, 237, 242, 0.055)';
         particleContext.lineWidth = 1;
         particleContext.stroke();
       }
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         particleContext.beginPath();
         particleContext.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        particleContext.fillStyle = 'rgba(224, 174, 127, 0.68)';
+        particleContext.fillStyle = index % 31 === 0 ? 'rgba(241, 91, 138, 0.72)' : 'rgba(166, 237, 242, 0.68)';
         particleContext.fill();
 
         for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex++) {
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
             particleContext.beginPath();
             particleContext.moveTo(particle.x, particle.y);
             particleContext.lineTo(other.x, other.y);
-            particleContext.strokeStyle = `rgba(196, 122, 74, ${(1 - distance / 118) * 0.2})`;
+            particleContext.strokeStyle = `rgba(72, 209, 225, ${(1 - distance / 118) * 0.2})`;
             particleContext.lineWidth = 0.7;
             particleContext.stroke();
           }
