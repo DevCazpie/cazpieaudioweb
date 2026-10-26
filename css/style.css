@@ -2316,6 +2316,7 @@ body {
 .hero-art.no-image { background: linear-gradient(145deg, #f1eeea, #e3ded7); }
 .hero-art::after { background: linear-gradient(transparent, rgba(20,18,17,.78)); }
 .hero-art-caption span, .hero-art-index { color: #f2c9c8; }
+.hero-art-caption strong { color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.42); }
 .music-wrapper, .contact-container-box, .project-card, .social-card {
   color: #242321;
   background: rgba(255,255,255,.82);
@@ -2335,6 +2336,8 @@ body {
 .modal-dialog { color: #242321; background: #fbfaf7; }
 .modal-banner { background: #eeece7; }
 .modal-description-box, .modal-content-box, .modal-audio-section { color: #45413d; background: #f1efea; border-color: rgba(42,39,37,.12); }
+.modal-description-box p, .modal-message { color: #242321; }
+.modal-audio-header h4, .track-title, .modal-section-title { color: #242321; }
 .modal-audio-header { border-bottom-color: rgba(42,39,37,.12); }
 .track-player-card { background: #fff; border-color: rgba(42,39,37,.14); }
 .track-number, .modal-project-badge { color: #8f1425; background: rgba(179,25,45,.08); border-color: rgba(179,25,45,.18); }
@@ -2440,6 +2443,11 @@ a:hover { color: #6f101e; }
 :root[data-theme="dark"] .modal-description-box,
 :root[data-theme="dark"] .modal-content-box,
 :root[data-theme="dark"] .modal-audio-section { color: #e5e0dc; background: #202020; border-color: rgba(255,255,255,.12); }
+:root[data-theme="dark"] .modal-description-box p,
+:root[data-theme="dark"] .modal-message,
+:root[data-theme="dark"] .modal-audio-header h4,
+:root[data-theme="dark"] .track-title,
+:root[data-theme="dark"] .modal-section-title { color: #fff; }
 :root[data-theme="dark"] .modal-audio-header { border-bottom-color: rgba(255,255,255,.12); }
 :root[data-theme="dark"] .track-player-card { background: #151515; border-color: rgba(255,255,255,.12); }
 :root[data-theme="dark"] .modal-status-badge { color: #fff; background: #b3192d; border-color: #b3192d; }
@@ -2464,3 +2472,72 @@ a:hover { color: #6f101e; }
 @media (max-width: 768px) {
   :root[data-theme="dark"] .nav-links { background: #111; border-color: rgba(209,42,59,.3); }
 }
+
+/* Project card hover colors invert cleanly with the active theme. */
+.project-card:hover,
+.project-card:focus-visible {
+  color: #fff;
+  background: #111;
+  border-color: #b3192d;
+  box-shadow: 0 20px 46px rgba(0,0,0,.2), 0 0 0 1px rgba(179,25,45,.12);
+}
+.project-card:hover *,
+.project-card:focus-visible * { color: #fff; }
+.project-card:hover .tag-unreleased,
+.project-card:focus-visible .tag-unreleased { color: #ef4444; }
+.project-card:hover .project-number,
+.project-card:focus-visible .project-number { background: rgba(179,25,45,.22); border-color: rgba(255,255,255,.18); }
+.project-card:hover .project-icon-indicator,
+.project-card:focus-visible .project-icon-indicator { background: #b3192d; }
+.project-card:hover .project-card-footer,
+.project-card:focus-visible .project-card-footer { border-top-color: rgba(255,255,255,.2); }
+
+:root[data-theme="dark"] .project-card:hover,
+:root[data-theme="dark"] .project-card:focus-visible {
+  color: #111;
+  background: #fff;
+  border-color: #d12a3b;
+  box-shadow: 0 20px 46px rgba(0,0,0,.4), 0 0 0 1px rgba(209,42,59,.14);
+}
+:root[data-theme="dark"] .project-card:hover *,
+:root[data-theme="dark"] .project-card:focus-visible * { color: #111; }
+:root[data-theme="dark"] .project-card:hover .tag-unreleased,
+:root[data-theme="dark"] .project-card:focus-visible .tag-unreleased { color: #d12a3b; }
+:root[data-theme="dark"] .project-card:hover .project-number,
+:root[data-theme="dark"] .project-card:focus-visible .project-number { background: rgba(209,42,59,.12); border-color: rgba(17,17,17,.18); }
+:root[data-theme="dark"] .project-card:hover .project-icon-indicator,
+:root[data-theme="dark"] .project-card:focus-visible .project-icon-indicator { background: rgba(209,42,59,.15); }
+:root[data-theme="dark"] .project-card:hover .project-card-footer,
+:root[data-theme="dark"] .project-card:focus-visible .project-card-footer { border-top-color: rgba(17,17,17,.2); }
+
+/* Audio track cards follow the same light/dark hover inversion. */
+.track-player-card { color: #242321; background: #fff; transition: color .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.track-player-card .track-title { color: #242321; }
+.track-player-card audio { color-scheme: light; }
+.track-player-card:hover,
+.track-player-card:focus-within { color: #fff; background: #111; border-color: #b3192d; }
+.track-player-card:hover .track-title,
+.track-player-card:focus-within .track-title,
+.track-player-card:hover .track-number,
+.track-player-card:focus-within .track-number { color: #fff; }
+.track-player-card:hover .track-number,
+.track-player-card:focus-within .track-number { background: rgba(179,25,45,.22); border-color: rgba(255,255,255,.18); }
+.track-player-card:hover audio,
+.track-player-card:focus-within audio { color-scheme: dark; }
+
+:root[data-theme="dark"] .track-player-card { color: #f4f1ee; background: #191919; }
+:root[data-theme="dark"] .track-player-card .track-title { color: #fff; }
+:root[data-theme="dark"] .track-player-card audio { color-scheme: dark; }
+:root[data-theme="dark"] .track-player-card:hover,
+:root[data-theme="dark"] .track-player-card:focus-within { color: #111; background: #fff; border-color: #d12a3b; }
+:root[data-theme="dark"] .track-player-card:hover .track-title,
+:root[data-theme="dark"] .track-player-card:focus-within .track-title,
+:root[data-theme="dark"] .track-player-card:hover .track-number,
+:root[data-theme="dark"] .track-player-card:focus-within .track-number { color: #111; }
+:root[data-theme="dark"] .track-player-card:hover .track-number,
+:root[data-theme="dark"] .track-player-card:focus-within .track-number { background: rgba(209,42,59,.12); border-color: rgba(17,17,17,.18); }
+:root[data-theme="dark"] .track-player-card:hover audio,
+:root[data-theme="dark"] .track-player-card:focus-within audio { color-scheme: light; }
+
+.resume-tag { color: #a91e2d; background: rgba(179,25,45,.1); border-color: rgba(179,25,45,.28); }
+:root[data-theme="dark"] .resume-tag { color: #f0a0a5; background: rgba(209,42,59,.18); border-color: rgba(209,42,59,.38); }
