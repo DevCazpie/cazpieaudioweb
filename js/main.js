@@ -418,21 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6a. Hero waveform bars — a smooth, repeatable shape (no randomness, so it
   //     looks the same on every visit)
-  const heroWave = document.getElementById('heroWave');
-  if (heroWave) {
-    const BAR_COUNT = 64;
-    const frag = document.createDocumentFragment();
-    for (let n = 0; n < BAR_COUNT; n++) {
-      const shape = 0.55 + 0.25 * Math.sin(n * 0.35) + 0.15 * Math.sin(n * 0.9 + 1.3);
-      const bar = document.createElement('span');
-      bar.style.setProperty('--n', String(BAR_COUNT - 1 - n));
-      bar.style.setProperty('--h', Math.round(Math.max(0.18, Math.min(1, shape)) * 100) + '%');
-      bar.style.setProperty('--dur', (1.8 + (n % 5) * 0.22).toFixed(2) + 's');
-      frag.appendChild(bar);
-    }
-    heroWave.appendChild(frag);
-  }
-
   // One restrained, slow-moving waveform across the full page.
   const particleCanvas = document.getElementById('particleCanvas');
   const particleContext = particleCanvas && particleCanvas.getContext('2d');
